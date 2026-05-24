@@ -1,0 +1,101 @@
+{
+  "name": "akhrot-workspace",
+  "displayName": "Akhrot Workspace",
+  "description": "Akhrot workspace memory foundation for VS Code.",
+  "version": "0.1.0",
+  "publisher": "akhrot",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "akhrotWorkspaceContainer",
+          "title": "Akhrot Workspace",
+          "icon": "$(workspace-trusted)"
+        }
+      ]
+    },
+    "views": {
+      "akhrotWorkspaceContainer": [
+        {
+          "type": "webview",
+          "id": "akhrotWorkspaceSidebar",
+          "name": "Akhrot Workspace"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "akhrotWorkspace.refreshWorkspace",
+        "title": "Akhrot: Refresh Workspace"
+      },
+      {
+        "command": "akhrotWorkspace.searchCode",
+        "title": "Akhrot: Search Workspace"
+      },
+      {
+        "command": "akhrotWorkspace.getWorkspaceSummary",
+        "title": "Akhrot: Get Workspace Summary"
+      },
+      {
+        "command": "akhrotWorkspace.getRecentChanges",
+        "title": "Akhrot: Get Recent Changes"
+      },
+      {
+        "command": "akhrotWorkspace.getLatestGitDiff",
+        "title": "Akhrot: Get Latest Git Diff"
+      },
+      {
+        "command": "akhrotWorkspace.listMcpTools",
+        "title": "Akhrot: List MCP Tools"
+      }
+    ],
+    "configuration": {
+      "title": "Akhrot Workspace",
+      "properties": {
+        "akhrotWorkspace.enableWatcher": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable workspace file and editor tracking."
+        },
+        "akhrotWorkspace.enableGitTracking": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Git tracking for the current workspace."
+        },
+        "akhrotWorkspace.maxSearchResults": {
+          "type": "number",
+          "default": 50,
+          "description": "Maximum code search results returned per query."
+        },
+        "akhrotWorkspace.maxMemoryEntries": {
+          "type": "number",
+          "default": 200,
+          "description": "Maximum local memory records to keep."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./tsconfig.json",
+    "watch": "tsc -w -p ./tsconfig.json"
+  },
+  "dependencies": {
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.15",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.4"
+  }
+}
